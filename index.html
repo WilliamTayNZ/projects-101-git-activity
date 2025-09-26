@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Personal Projects 101 • Git Activity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header> 
+    <div class="container">
+      <h1>Personal Projects 101 • Git & GitHub</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="overview" class="section">
+      <h2>What we’ll do</h2>
+      <p class="muted">
+        We’ll perform core Git workflows using this tiny repository. Each activity is short, focused, and mirrors
+        real-world collaboration.
+      </p>
+
+      <div class="grid tasks two-tasks">
+        <article class="task">
+          <div class="task-number">1</div>
+          <h3>Change & Pull Request</h3>
+          <p>Make a small change on a branch, push it, open a PR, and merge.</p>
+        </article>
+        <article class="task">
+          <div class="task-number">2</div>
+          <h3>Resolve a Merge Conflict</h3>
+          <p>Edit the same line on different branches, then resolve the conflict when merging.</p>
+        </article>
+      </div>
+
+      <p class="note">
+        <strong>Tip:</strong> No local setup required if you use GitHub Codespaces — just open the repo in the browser and work in the built-in editor/terminal.
+      </p>
+    </section>
+
+    <!-- Activity 1: Change & PR -->
+    <section id="fix-pr" class="section">
+      <h2>Activity 1 — Change & Pull Request</h2>
+      <p>We will use the core workflow: branch → change → commit → push → PR → merge.</p>
+
+      <ol class="list-steps">
+        <li>Suppose you wanted to remove this red text <span style="color:red">"remove me"</span>.</li>
+        <li>Fork the repository, then create a new branch:
+          <code>git checkout -b chore/remove-red-text</code>
+        </li>
+        <li>Delete the red text and save the file.</li>
+        <li><strong>Commit & push</strong>:
+          <pre class="code">
+git add .
+git commit -m "chore: remove red text"
+git push -u origin chore/remove-red-text
+          </pre>
+        </li>
+        <li>On GitHub, open a <strong>Pull Request</strong> to <code>main</code>, add a clear title/summary, then merge.</li>
+      </ol>
+
+      <details class="hint">
+        <summary>Why we do this</summary>
+        <ul>
+          <li>Creating branches for specific changes keeps work focused and isolated.</li>
+          <li>Clear commit and PR messages help you and your collaborators.</li>
+          <li>PRs allow collaborators to review code and resolve potential conflicts, ensuring a smooth merge into <code>main</code>.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- Activity 2: Conflict -->
+    <section id="conflict" class="section">
+      <h2>Activity 2 — Resolve a Merge Conflict</h2>
+      <p>Suppose while working on separate branches, you and a teammate both changed the same line in a file. When Git tries to merge, it doesn’t know whose edit to keep — that’s a merge conflict.</p>
+
+      <ol class="list-steps">
+        <li>Create a new branch:
+          <code>git checkout -b chore/change-heading</code>
+          <p class="muted"><b>Tip:</b> You can run <code>git branch</code> to see which branches are available on your local repository.</p>
+        </li>
+        <li>Edit the main heading in <code>index.html</code>, for example:
+          <code>&lt;h1&gt;Git Workshop Activity&lt;/h1&gt;</code>
+          and commit your change.
+        </li>
+        <li>Switch back to <code>main</code>:
+          <pre class="code">git checkout main</pre>
+          Change the same heading line differently (e.g. <code>&lt;h1&gt;Git & GitHub Hands-on&lt;/h1&gt;</code>) and commit.
+        </li>
+        <li>Now try to merge your branch into <code>main</code>:
+          <pre class="code">git merge chore/change-heading</pre>
+          Git will stop and show a merge conflict.
+        </li>
+        <li>Open <code>index.html</code> to view the conflict markers
+          (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>).
+          Edit the file to the final version you want, then:
+          <pre class="code">
+git add index.html
+git commit
+          </pre>
+          to finish the merge.
+        </li>
+      </ol>
+
+      <details class="hint">
+        <summary>Why this happens</summary>
+        <p>Both branches edited the same line differently. Git cannot decide which version to keep, so it asks you to resolve the conflict manually.</p>
+      </details>
+    </section>
+
+  </main>
+</body>
+</html>
